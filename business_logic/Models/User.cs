@@ -4,9 +4,11 @@ using System.Text;
 
 namespace business_logic.Models
 {
+
     /// <summary>
     /// Пользователь.
     /// </summary>
+     [Serializable]
     public class User
     {
         #region Свойства

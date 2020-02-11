@@ -12,11 +12,20 @@
         <VM:MainViewModel />
     </Window.DataContext>
 
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-        <TextBlock Text="{Binding Clicks}" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="50" MinWidth="200" Background="PaleGoldenrod" TextAlignment="Center" />
-
-            <Button Content="Click" FontSize="40" Height="50" Width="150" Margin="20" Command="{Binding ClickAdd}" />
-        </StackPanel>
+    <Grid Background="Salmon">
+        <Grid>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox Text="{Binding UserName}" Style="{StaticResource usetText}" Tag="Введите имя пользователя"/>
+                <TextBox Text="{Binding UserGender}" Style="{StaticResource usetText}" Tag="Введите пол" />
+                <TextBox Text="{Binding UserBirthDay}" Style="{StaticResource usetText}" Tag="Введите дату рождения" />
+                <TextBox Text="{Binding UserWeight}" Style="{StaticResource usetText}" Tag="Введите вес" />
+                <TextBox Text="{Binding UserHeight}" Style="{StaticResource usetText}" Tag="Введите рост" />
+                <Button Content="Add" Style="{StaticResource userBtn}" Command="{Binding ClickAdd}" />
+            </StackPanel>
+            
+            <Button Style="{StaticResource intro}" Opacity="0" />
+        </Grid>
+        
     </Grid>
+    
 </Window>

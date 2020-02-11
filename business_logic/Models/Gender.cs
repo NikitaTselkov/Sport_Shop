@@ -4,9 +4,11 @@ using System.Text;
 
 namespace business_logic.Models
 {
+
     /// <summary>
     /// Пол.
     /// </summary>
+    [Serializable]
     public class Gender
     {
         /// <summary>

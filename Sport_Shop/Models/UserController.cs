@@ -88,7 +88,7 @@ namespace business_logic.Controller
 
             using (var fs = new FileStream("Users.dat", FileMode.OpenOrCreate))
             {
-                if (formatter.Deserialize(fs) is List<User> users)
+                if (fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)
                 {
                     return users;
                 }

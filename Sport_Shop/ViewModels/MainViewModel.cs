@@ -1,4 +1,5 @@
 ﻿using business_logic.Controller;
+using business_logic.Models;
 using DevExpress.Mvvm;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -13,38 +14,45 @@ using System.Windows.Input;
 
 namespace Sport_Shop.ViewModels
 {
-    class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
+        Models.UserLogic userLogic = new Models.UserLogic();
+
         public string UserName { get; set; }
-        
+
         public string UserGender { get; set; }
 
         public string UserBirthDay { get; set; }
 
-        public string UserWeight { get; set; }
+        public string UserWeight { get; set; } 
 
-        public string UserHeight { get; set; }
+        public string UserHeight { get; set; } 
+
+        public bool IsFindUser { get; set; }
+
+        public bool IsCorrectly { get; set; }
+
 
         public ICommand ClickAdd
         {
             get
             {
-                return new DelegateCommand(() =>
+                return new RelayCommand(() =>
                 {
-                    CreateUser();
+                    IsFindUser = userLogic.IsUserFind(UserName);   
                 });
             }
         }
 
-        public void CreateUser()
+        public ICommand ClickAdd2
         {
-            DateTime _UserBirthDay = DateTime.Parse(UserBirthDay);
-            double _UserWeight = double.Parse(UserWeight);
-            double _UserHeight = double.Parse(UserHeight);
-
-            var userController = new UserController(UserName, UserGender, _UserBirthDay, _UserWeight, _UserHeight);
-            userController.Save();
-
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                  IsCorrectly = userLogic.IsUserNotCorrectly(UserName, UserGender, UserBirthDay, UserWeight, UserHeight);
+                });
+            }
         }
 
     }

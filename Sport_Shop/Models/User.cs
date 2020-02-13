@@ -20,12 +20,12 @@ namespace business_logic.Models
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// День рождения.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }
 
         /// <summary>
         /// Вес.
@@ -36,6 +36,8 @@ namespace business_logic.Models
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
 
         #endregion
 
@@ -70,7 +72,7 @@ namespace business_logic.Models
                 throw new ArgumentNullException("Аргумент не может быть меньше 0, больше 500 или равен null", nameof(weight));
             }
 
-            if(height <= 0 && height > 3)
+            if(height <= 0 && height > 300)
             {
                 throw new ArgumentNullException("Аргумент не может быть меньше 0, больше 3 или равен null", nameof(height));
             }
@@ -84,11 +86,19 @@ namespace business_logic.Models
             #endregion
         }
 
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользователя не может быть пустыи или null", nameof(name));
+            }
+            Name = name;
+        }
 
 
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age + " " + BirthDate + " " + Weight + " " + Height;
         }
 
 

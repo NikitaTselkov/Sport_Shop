@@ -6,11 +6,93 @@
         <Setter Property="Height" Value="50" />
         <Setter Property="Width" Value="150" />
         <Setter Property="Margin" Value="5" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Visibility" Value="Visible" />
+        <Setter Property="Command" Value="{Binding ClickAdd}" />
+    </Style>
+
+    <Style x:Key="userBtn2" TargetType="Button">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Visibility" Value="Visible" />
+        <Setter Property="Command" Value="{Binding ClickAdd2}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false" >
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="usetText" TargetType="TextBox">
         <Setter Property="FontSize" Value="30" />
         <Setter Property="Width" Value="380" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="MaxHeight" Value="200" />
+        <Setter Property="Text" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            MaxHeight="{TemplateBinding MaxHeight}"
+                            Visibility="{TemplateBinding Visibility}">
+
+
+                        <Grid Margin="5">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+
+                            <TextBlock 
+                                Text="{TemplateBinding Tag}"
+                                x:Name="hint"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                FontSize="{TemplateBinding FontSize}"
+                                IsHitTestVisible="False"
+                                TextAlignment="{TemplateBinding TextAlignment}"
+                                Visibility="Collapsed"
+                                TextWrapping="{TemplateBinding TextWrapping}"
+                                HorizontalAlignment="Center"
+                            />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="hint" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="true" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="UserNameText" TargetType="TextBox">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Width" Value="380" />
+        <Setter Property="Margin" Value="4" />
         <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextAlignment" Value="Center" />
@@ -58,6 +140,16 @@
         </Setter>
     </Style>
 
-    
+    <Style x:Key="ExceptionText" TargetType="Label">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Foreground" Value="BlanchedAlmond" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="true">
+                <Setter Property="Visibility" Value="Visible" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>
